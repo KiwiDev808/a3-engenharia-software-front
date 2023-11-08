@@ -1,71 +1,57 @@
-# busque-quadras-front
+<div align='center'>
+    <img height='200px' src="./.github/Logo.png">
+</div>
 
-This template should help get you started developing with Vue 3 in Vite.
 
-## Recommended IDE Setup
+# Busque Quadras
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+Busque Quadras é um sistema de busca e gerenciamento de quadras poliesportivas em Salvador, projetado para fornecer praticidade, acessibilidade e inclusão aos usuários que desejam obter informações e localizar quadras esportivas em regiões próximas.
 
-## Type Support for `.vue` Imports in TS
+## Visão Geral
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+O objetivo do projeto é criar uma plataforma que permita aos usuários encontrar e acessar informações sobre quadras poliesportivas em Salvador, incluindo detalhes sobre localização, tipos de esportes oferecidos, horários de funcionamento, preços e muito mais. Além disso, o sistema também fornece funcionalidades de gerenciamento para proprietários de quadras.
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+### Layout
 
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+[![Figma](https://img.shields.io/badge/acessar%20layout%20no%20figma-222222?style=for-the-badge&logo=figma&logoColor=white)](https://www.figma.com/file/S8wtQD0nP4TYSVTVZuRbfe/busque-quadras?type=design&node-id=33%3A25&mode=design&t=Z7xlJrDfIChgQpVH-1)
 
-## Customize configuration
+## Tecnologias
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+O projeto é construído usando o framework Vue.js para o front-end. Além disso, utiliza outras tecnologias e bibliotecas, incluindo:
 
-## Project Setup
+- Vue Router para roteamento de páginas.
+- Vuex para gerenciamento de estado.
+- Axios para fazer solicitações HTTP.
+- [Outras bibliotecas ou tecnologias utilizadas no projeto]
 
-```sh
-npm install
-```
+## Instalação
 
-### Compile and Hot-Reload for Development
+Para executar o projeto localmente, siga estas etapas:
 
-```sh
-npm run dev
-```
+1. Clone o repositório do GitHub:
 
-### Type-Check, Compile and Minify for Production
+   ```bash
+   git clone https://github.com/seuusuario/busque-quadras.git
+   ```
 
-```sh
-npm run build
-```
+2. Navegue até o diretório do projeto:
 
-### Run Unit Tests with [Vitest](https://vitest.dev/)
+   ```bash
+   cd busque-quadras-front
+   ```
 
-```sh
-npm run test:unit
-```
+3. Instale as dependências:
 
-### Run End-to-End Tests with [Playwright](https://playwright.dev)
+   ```bash
+   yarn install
+   ```
 
-```sh
-# Install browsers for the first run
-npx playwright install
+4. Inicie o servidor de desenvolvimento:
 
-# When testing on CI, must build the project first
-npm run build
+   ```bash
+   yarn serve
+   ```
 
-# Runs the end-to-end tests
-npm run test:e2e
-# Runs the tests only on Chromium
-npm run test:e2e -- --project=chromium
-# Runs the tests of a specific file
-npm run test:e2e -- tests/example.spec.ts
-# Runs the tests in debug mode
-npm run test:e2e -- --debug
-```
+5. Abra o navegador e acesse [http://localhost:8080](http://localhost:8080) para visualizar o aplicativo.
 
-### Lint with [ESLint](https://eslint.org/)
 
-```sh
-npm run lint
-```
