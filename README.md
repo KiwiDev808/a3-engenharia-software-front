@@ -20,9 +20,7 @@ O objetivo do projeto é criar uma plataforma que permita aos usuários encontra
 O projeto é construído usando o framework Vue.js para o front-end. Além disso, utiliza outras tecnologias e bibliotecas, incluindo:
 
 - Vue Router para roteamento de páginas.
-- Vuex para gerenciamento de estado.
-- Axios para fazer solicitações HTTP.
-- [Outras bibliotecas ou tecnologias utilizadas no projeto]
+- Plinia para gerenciamento de estado.
 
 ## Instalação
 
@@ -31,7 +29,7 @@ Para executar o projeto localmente, siga estas etapas:
 1. Clone o repositório do GitHub:
 
    ```bash
-   git clone https://github.com/seuusuario/busque-quadras.git
+   https://github.com/KiwiDev808/a3-engenharia-software-front.git
    ```
 
 2. Navegue até o diretório do projeto:
@@ -49,9 +47,9 @@ Para executar o projeto localmente, siga estas etapas:
 4. Inicie o servidor de desenvolvimento:
 
    ```bash
-   yarn serve
+   yarn dev
    ```
 
-5. Abra o navegador e acesse [http://localhost:8080](http://localhost:8080) para visualizar o aplicativo.
+5. Abra o navegador e acesse [http://localhost:5173](http://localhost:5173) para visualizar o aplicativo.
 
 
