@@ -1,14 +1,16 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import LockIcon from '@/components/icons/IconLock.vue'
 
-defineProps<{
+const props = defineProps<{
   label: string
+  modelValue: string
 }>()
+defineEmits(['update:modelValue'])
 
-let input = ref('')
 let error = ref('')
 const validateInput = () => {
-  error.value = input.value === '' ? 'The Input field is required' : ''
+  error.value = props.modelValue === '' ? 'O campo deve ser preenchido' : ''
 }
 </script>
 
@@ -16,14 +18,18 @@ const validateInput = () => {
   <article class="input-wrapper">
     <section class="input-section">
       <label>{{ label }}</label>
-      <input
-        type="password"
-        placeholder="******************"
-        autocomplete="off"
-        v-model="input"
-        @keyup="validateInput"
-        @blue="validateInput"
-      />
+      <div class="input-with-icon">
+        <input
+          type="password"
+          placeholder="******************"
+          autocomplete="off"
+          :value="modelValue"
+          @input="$emit('update:modelValue', $event?.target?.value)"
+          @keyup="validateInput"
+          @blur="validateInput"
+        />
+        <LockIcon class="input-icon" />
+      </div>
     </section>
     <section class="error-section" v-if="error">
       {{ error }}
@@ -46,10 +52,24 @@ label {
   font-weight: 500;
 }
 
-.input-section > input {
+input {
   height: 42px;
   border-color: var(--color-border);
   border-radius: 2px;
+  padding-left: 40px;
+  width: 100%;
+}
+
+.input-with-icon {
+  position: relative;
+  width: 100%;
+}
+
+.input-icon {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
 }
 
 .error-section {

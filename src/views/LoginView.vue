@@ -1,6 +1,16 @@
 <script setup lang="ts">
 import PasswordInputVue from '@/components/PasswordInput.vue'
 import EmailInput from '../components/EmailInput.vue'
+import IconGoogle from '@/components/icons/IconGoogle.vue'
+import { RouterLink } from 'vue-router'
+import { ref } from 'vue'
+
+let email = ref('')
+let password = ref('')
+
+const enviar = () => {
+  console.log({ email: email.value, password: password.value })
+}
 </script>
 
 <template>
@@ -8,16 +18,22 @@ import EmailInput from '../components/EmailInput.vue'
     <section class="form-wrapper">
       <header>
         <h2>busque quadras</h2>
-        <p>Registre-se para uma experiência completa!</p>
+        <p>Faça login para uma experiência completa!</p>
       </header>
       <form class="signup-form">
-        <EmailInput label="Endereço de e-mail" placeholder="joaosilva@example.com" />
-
-        <PasswordInputVue label="Sua senha" />
-
-        <PasswordInputVue label="Confirme sua senha" />
+        <EmailInput
+          v-model:value="email"
+          label="Endereço de e-mail"
+          placeholder="joaosilva@example.com"
+        />
+        <PasswordInputVue v-model:model-value="password" label="Sua senha" />
       </form>
-      <button type="submit">Registrar</button>
+      <button type="submit" @click="enviar">Entrar na plataforma</button>
+
+      <section class="register-link">
+        <RouterLink to="/cadastro">Não possui conta? Entre com</RouterLink>
+        <IconGoogle class="register-icon" />
+      </section>
     </section>
   </main>
 </template>
@@ -46,7 +62,7 @@ header > p {
   font-size: 1.25rem;
   color: #7c7c8a;
   text-align: center;
-  width: 80%;
+  width: 90%;
 }
 .form-wrapper {
   width: clamp(300px, 80vw, 400px);
@@ -61,5 +77,17 @@ button {
   font-size: 1.25rem;
   font-weight: 700;
   color: white;
+}
+
+.register-link {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.register-icon {
+  width: 48px;
+  height: 48px;
 }
 </style>
