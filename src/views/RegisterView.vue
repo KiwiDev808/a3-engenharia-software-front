@@ -1,6 +1,47 @@
 <script setup lang="ts">
 import PasswordInputVue from '@/components/PasswordInput.vue'
 import EmailInput from '../components/EmailInput.vue'
+import { ref } from 'vue'
+import { isEmptyString, isInvalidEmail } from '@/utils/validation'
+import { UserService } from '@/services/UserService'
+
+let email = ref('')
+let password = ref('')
+let checkPassword = ref('')
+
+const validateInputs = () => {
+  const fieldsToFix = []
+  if (isEmptyString(email.value) || isInvalidEmail(email.value)) {
+    fieldsToFix.push('Email')
+  }
+  if (isEmptyString(password.value)) {
+    fieldsToFix.push('Senha')
+  }
+
+  if (isEmptyString(checkPassword.value)) {
+    fieldsToFix.push('Confirmação de Senha')
+  }
+
+  if (checkPassword.value !== password.value) {
+    fieldsToFix.push('Senha e Confirmação de Senha')
+  }
+
+  if (fieldsToFix.length > 0) {
+    alert(`Os campos [${fieldsToFix.join(', ')}] devem ser preenchidos corretamente`)
+    return
+  }
+}
+
+const userService = new UserService({ post: () => {} } as any)
+
+const registerUser = async () => {
+  validateInputs()
+  await userService.register({
+    email: email.value,
+    password: password.value,
+    checkPassword: checkPassword.value
+  })
+}
 </script>
 
 <template>
@@ -11,13 +52,17 @@ import EmailInput from '../components/EmailInput.vue'
         <p>Registre-se para uma experiência completa!</p>
       </header>
       <form class="signup-form">
-        <EmailInput label="Endereço de e-mail" placeholder="joaosilva@example.com" />
+        <EmailInput
+          v-model:model-value="email"
+          label="Endereço de e-mail"
+          placeholder="joaosilva@example.com"
+        />
 
-        <PasswordInputVue label="Sua senha" />
+        <PasswordInputVue v-model:model-value="password" label="Sua senha" />
 
-        <PasswordInputVue label="Confirme sua senha" />
+        <PasswordInputVue v-model:model-value="checkPassword" label="Confirme sua senha" />
       </form>
-      <button type="submit">Registrar</button>
+      <button type="submit" @click="registerUser">Registrar</button>
     </section>
   </main>
 </template>

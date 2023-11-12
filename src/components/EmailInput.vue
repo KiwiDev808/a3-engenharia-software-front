@@ -1,18 +1,27 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import MailIcon from '@/components/icons/IconMail.vue'
+import { isEmptyString, isInvalidEmail } from '@/utils/validation'
 
-defineProps<{
+const props = defineProps<{
   label: string
   placeholder: string
-  value: string
+  modelValue: string
 }>()
-defineEmits(['input'])
+defineEmits(['update:modelValue'])
 
-let input = ref('')
 let error = ref('')
 const validateInput = () => {
-  error.value = input.value === '' ? 'O campo deve ser preenchido' : ''
+  error.value = ''
+  if (isEmptyString(props.modelValue)) {
+    error.value = 'O campo deve ser preenchido'
+    return
+  }
+
+  if (isInvalidEmail(props.modelValue)) {
+    error.value = 'O campo deve ser um e-mail'
+    return
+  }
 }
 </script>
 
@@ -25,8 +34,8 @@ const validateInput = () => {
           type="text"
           :placeholder="placeholder"
           autocomplete="off"
-          :value="value"
-          @input="$emit('input', $event?.target?.value)"
+          :value="modelValue"
+          @input="$emit('update:modelValue', $event?.target?.value)"
           @keyup="validateInput"
           @blue="validateInput"
         />

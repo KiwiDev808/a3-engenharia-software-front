@@ -4,12 +4,29 @@ import EmailInput from '../components/EmailInput.vue'
 import IconGoogle from '@/components/icons/IconGoogle.vue'
 import { RouterLink } from 'vue-router'
 import { ref } from 'vue'
+import { isEmptyString, isInvalidEmail } from '@/utils/validation'
 
 let email = ref('')
 let password = ref('')
 
-const enviar = () => {
-  console.log({ email: email.value, password: password.value })
+const validateInputs = () => {
+  const fieldsToFix = []
+  if (isEmptyString(email.value) || isInvalidEmail(email.value)) {
+    fieldsToFix.push('Email')
+  }
+  if (isEmptyString(password.value)) {
+    fieldsToFix.push('Senha')
+  }
+
+  if (fieldsToFix.length > 0) {
+    alert(`Os campos [${fieldsToFix.join(', ')}] devem ser preenchidos corretamente`)
+    return
+  }
+}
+
+const authenticateUser = () => {
+  validateInputs()
+  console.log('autenticado')
 }
 </script>
 
@@ -22,13 +39,13 @@ const enviar = () => {
       </header>
       <form class="signup-form">
         <EmailInput
-          v-model:value="email"
+          v-model:model-value="email"
           label="Endereço de e-mail"
           placeholder="joaosilva@example.com"
         />
         <PasswordInputVue v-model:model-value="password" label="Sua senha" />
       </form>
-      <button type="submit" @click="enviar">Entrar na plataforma</button>
+      <button type="submit" @click="authenticateUser">Entrar na plataforma</button>
 
       <section class="register-link">
         <RouterLink to="/cadastro">Não possui conta? Entre com</RouterLink>

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import LockIcon from '@/components/icons/IconLock.vue'
+import { isEmptyString } from '@/utils/validation'
 
 const props = defineProps<{
   label: string
@@ -10,7 +11,7 @@ defineEmits(['update:modelValue'])
 
 let error = ref('')
 const validateInput = () => {
-  error.value = props.modelValue === '' ? 'O campo deve ser preenchido' : ''
+  error.value = isEmptyString(props.modelValue) ? 'O campo deve ser preenchido' : ''
 }
 </script>
 
